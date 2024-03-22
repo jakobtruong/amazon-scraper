@@ -1,1 +1,1 @@
-# expedia-web-scraper
+# web-scraper
