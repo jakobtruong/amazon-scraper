@@ -1,18 +1,8 @@
+from requests_html import HTMLSession
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from time import sleep
 
-website_to_scrape = 'http://books.toscrape.com/'
-options = webdriver.ChromeOptions()
-options.add_argument('--ignore-certificate-errors')
-options.add_argument('--incognito')
-options.add_argument('--headless')
-options.page_load_strategy = 'normal'
-driver = webdriver.Chrome()
-driver.get(website_to_scrape)
-page = driver.page_source
-soup = BeautifulSoup(page)
-print(soup)
+product_url = 'https://www.amazon.com/s?k=computer+stand&crid=160JN6TSDRUXD&sprefix=computer%2Caps%2C172&ref=nb_sb_ss_ts-doa-p_8_8'
+
 def main():
     while True:
       pass
