@@ -1,1 +1,1 @@
-# web-scraper
+# amazon-scraper
