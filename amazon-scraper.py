@@ -1,27 +1,33 @@
-import requests
+import pandas as pd
+import asyncio
 from bs4 import BeautifulSoup
+from playwright.async_api import async_playwright
+from time import sleep
 
-# HEADERS = {
-#   'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'),
-#   'Accept-Language': 'en-US, en;q=0.9'
-# }
-HEADERS = ({'User-Agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-            'Accept-Language': 'en-US, en;q=0.9'})
-product_url = 'https://www.amazon.com/s?k=computer+stand&crid=160JN6TSDRUXD&sprefix=computer%2Caps%2C172&ref=nb_sb_ss_ts-doa-p_8_8'
+amazon_search_url = 'https://www.amazon.com/s?k=technology&crid=397VY8LH02RMK&sprefix=technology%2Caps%2C332&ref=nb_sb_noss_2'
 
-def get_data(url, custom_headers):
-  page = requests.get(url, custom_headers)
-  if page.status_code != 200:
-    print('The product url provided does not return a 200 status code')
+async def scrape_amazon():
+  async with async_playwright() as pw:
+    # Launch new browser
+    browser = await pw.chromium.launch(headless=False)
+    page = await browser.new_page()
+    # Go to Amazon product URL and parse html
+    await page.goto(amazon_search_url)
+    html = await page.content()
+    soup = BeautifulSoup(html,'html.parser')
+    # Extract information
+    results = []
+    listing = soup.find('div', class_='sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20')
+    print(listing)
+    product_name = listing.find('span', class_='a-size-base-plus a-color-base a-text-normal').text
+    product_rating = listing.find('span[aria-label*="out of 5 stars"] > span.a-size-base')
+    print('product name: ', product_name)
 
-  soup = BeautifulSoup(page.text,'html.parser').prettify
-  print(soup)
-  return
+    await browser.close()
 
 def main():
-  getdata(product_url, HEADERS)
-  return
+  results = asyncio.run(scrape_amazon())
+
 
 if __name__ == '__main__':
   main()
