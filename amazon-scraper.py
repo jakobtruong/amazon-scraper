@@ -2,7 +2,6 @@ import pandas as pd
 import asyncio
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
-from time import sleep
 import random
 
 async def request_with_retry(page, url):
