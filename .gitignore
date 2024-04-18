@@ -1,3 +1,6 @@
 # Environments
 .venv
 .env
+
+# csv files generated from amazon-scraper.py
+amazon_products_listings.csv
