@@ -71,7 +71,7 @@ async def scrape_amazon(product_url, max_pages = 1):
 
 def main():
   # Base url we are trying to web scrape
-  print('Example url: https://www.amazon.com/s?k=technology&crid=397VY8LH02RMK&sprefix=technology%2Caps%2C332&ref=nb_sb_noss_2')
+  print('Example url: https://www.amazon.com/s?k=technology&crid=25DJB16HLDJQB&sprefix=technology%2Caps%2C136&ref=nb_sb_noss_1')
   user_input_url = input('Enter Amazon product search url to scrape: ')
   max_pages_to_scrape = int(input('Enter maximum number of pages to scrape (int): '))
 
