@@ -37,6 +37,6 @@ pip install -r requirements.txt
 2. The program will prompt the user to enter a url. An example url can be found [here](https://www.amazon.com/s?k=technology&crid=25DJB16HLDJQB&sprefix=technology%2Caps%2C136&ref=nb_sb_noss_1).
 3. The program will then prompt the user to enter a integer represening how many pages starting from the url given in the previous step as a starting point to web crawl and scrape.
 4. The program will then output a .csv named amazon_products_listings.csv in the project's root directory.
-
+![usage_example_gif](./usage_example.gif)
 ## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
